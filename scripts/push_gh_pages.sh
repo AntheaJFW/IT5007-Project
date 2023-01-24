@@ -8,5 +8,6 @@ fi
 yarn build-storybook
 cd ./storybook-static
 
+git checkout gh-pages
 git commit -am "$1"
 git push origin gh-pages
