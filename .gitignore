@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/server/node_modules
 /.pnp
 .pnp.js
 
@@ -25,3 +26,5 @@ yarn-error.log*
 # Ignore development file
 .idea/
 .yarn/
+/server/public
+*backup
