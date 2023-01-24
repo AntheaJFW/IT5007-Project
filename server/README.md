@@ -7,6 +7,9 @@
 yarn install
 ```
 
+Create a `.env` file with the following defined:
+ - SECRET_KEY
+
 ### Commands
 Start development server
 ```bash

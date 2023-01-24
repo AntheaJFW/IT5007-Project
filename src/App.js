@@ -15,7 +15,7 @@ function App() {
                 </ProtectedRoute>
             } />
             <Route path="/login" element={<Auth />} />
-            <Route path="*" element={<p>404 not found</p>} />
+            <Route path="*" element={<p>404 not found</p>} status={404}/>
         </Routes>
       </BrowserRouter>
     );
