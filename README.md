@@ -2,6 +2,14 @@
 This README is for running the project. \
 For project overview and docs, please refer to: [Project Overview](https://antheajfw.github.io/IT5007-Project/?path=/story/it5007-project-overview--page)
 
+### Requires
+- [yarn](https://yarnpkg.com/getting-started/install)
+
+Once installed, run:
+```bash
+yarn install
+```
+
 ### Running the app for development
 ```bash
 yarn start
