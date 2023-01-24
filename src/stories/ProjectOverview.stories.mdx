@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="IT5007 Project Overview" />
+
+# IT5007 Project overview
+
+In the panel to the left are pages for different components used in the project that can be tested individually.
+These are example components provided by Storybook.js that may help with testing out different React components.
+
+Key information to note:
+For MDX files:
+```js
+import { Meta } from '@storybook/addon-docs'; // Imports the Meta
+...
+
+<Meta title="example/Introduction" /> // Sets the 'directory' or tab in the side bar
+```
+
+For JSX files:
+```js
+import { Header } from '../components/Header'; // Import component
+
+export default {
+  title: 'Example/Header', // For setting the 'directory' in the side bar
+  component: Header, // <- Map it to the component
+  parameters: {
+    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen', // For defining layout
+  },
+};
+
+const Template = (args) => <Header {...args} />; // Instantiating an instance of the component
+
+export const LoggedIn = Template.bind({}); // Cloning a component instance
+LoggedIn.args = { // Passing the arguments used for ...args to the component for this instance
+  user: {
+    name: 'Jane Doe',
+  },
+};
+```
+
+This page is intentionally left blank for now until we have more information on project outline.
