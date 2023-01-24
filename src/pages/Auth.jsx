@@ -20,7 +20,8 @@ export default function Auth(props) {
                             'start-50',
                             'translate-middle',
                             'bg-white'
-                ]}><h2>Login</h2>
+                ]}>
+                <h2>Login</h2>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
