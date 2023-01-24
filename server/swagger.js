@@ -10,10 +10,18 @@ const swaggerDefinition = {
     },
     servers: [
         {
-            url: 'http://localhost:3001',
+            url: 'http://localhost:3001/api',
             description: 'Development server',
         },
     ],
+    components: {
+        securitySchemes : {
+            BearerAuth: {type: "http", scheme: "bearer", bearerFormat: "JWT", in: 'header'}
+        }
+    }
+    // security: [{
+    //     BearerAuth: []
+    // }]
 };
 
 const options = {
