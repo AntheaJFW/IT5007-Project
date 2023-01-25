@@ -17,8 +17,8 @@ var router = express.Router();
  *         '403':
  *             description: Not enough permissions to find user
  */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', function (req, res, next) {
+  res.status(200).json({ status: 'success', data: '' });
 });
 
 module.exports = router;

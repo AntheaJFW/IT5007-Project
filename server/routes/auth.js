@@ -1,6 +1,6 @@
-const path = require("path");
+const path = require('path');
 var express = require('express');
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 var router = express.Router();
 
 /**
@@ -28,16 +28,21 @@ var router = express.Router();
  *         '403':
  *             description: Not enough permissions to find user
  */
-router.post('/', function(req, res, next) {
-    // Todo: Need to implement checks.
-    var token = jwt.sign({username: req.body.username}, process.env.SECRET_KEY, {
-        expiresIn: 1000 * 60 * 60 * 24, // would expire after 24 hours
-    });
+router.post('/', function (req, res, next) {
+  // Todo: Need to implement checks.
+  console.log(req.body.username, req.body.password);
+  var token = jwt.sign(
+    { username: req.body.username },
+    process.env.SECRET_KEY,
+    {
+      expiresIn: 1000 * 60 * 60 * 24, // would expire after 24 hours
+    }
+  );
 
-    return res.status(200).json({
-        expiresIn: 1000 * 60 * 60 * 24,
-        token
-    })
+  return res.status(200).json({
+    expiresIn: 1000 * 60 * 60 * 24,
+    token,
+  });
 });
 
 module.exports = router;
