@@ -52,3 +52,15 @@ yarn build-storybook
 This builds the storybook docs to `/docs` folder for which is configured to automatically 
 be served via github pages. Status of the gh-page deployment can be found at:
 [actions runner](https://github.com/AntheaJFW/IT5007-Project/actions).
+
+### Docker image for development
+Build image
+```bash
+docker build -f dev.dockerfile -t [tag-name] .
+```
+Where the tag name is in the form of [appName]:[version]
+
+Running the image as a container
+```bash
+docker run -p 3001:3001 -t [tag-name]
+```

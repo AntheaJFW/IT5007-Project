@@ -30,7 +30,6 @@ var router = express.Router();
  */
 router.post('/', function (req, res, next) {
   // Todo: Need to implement checks.
-  console.log(req.body.username, req.body.password);
   var token = jwt.sign(
     { username: req.body.username },
     process.env.SECRET_KEY,
