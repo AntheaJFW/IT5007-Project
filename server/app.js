@@ -5,16 +5,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger.js');
-const cors = require("cors");
+const cors = require('cors');
+var mongoose = require('mongoose');
 
 if (process.env.NODE_ENV === 'dev') {
-    var corsOptions = {
-        origin: "http://localhost:3000"
-    };
-
+  var corsOptions = {
+    origin: 'http://localhost:3000',
+  };
 }
-
 require('dotenv').config();
+
+mongoose.connect(process.env.MONGODB_CONNSTRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 var apiRouter = require('./routes/api');
 var indexRouter = require('./routes/index');
@@ -30,9 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Use swagger
 app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerSpec, { explorer: true })
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, { explorer: true })
 );
 app.use('/api', apiRouter);
 app.use('*', indexRouter); // Has to be last route to allow react to routes and errors
