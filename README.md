@@ -64,3 +64,12 @@ Running the image as a container
 ```bash
 docker run -p 3001:3001 -t [tag-name]
 ```
+
+### Running docker-compose for development
+Change `package.json` proxy to `http://server:3001`.
+```bash
+docker-compose -f docker-compose.dev.yml up
+```
+After building the images, this can be changed back to `http://localhost:3001`.
+Otherwise, `/scripts/start_services_dev.sh` contain some scripts to run the dev services.
+`chmod +x ./scripts/start_services_dev.sh` and run using `./scripts/start_services_dev.sh`.
