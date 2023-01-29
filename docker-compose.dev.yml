@@ -9,8 +9,11 @@ services:
         - "3000:3000"
       depends_on:
         - server
+      volumes:
+        - .:/client/
+        - client-node-modules:/client/node_modules
       networks:
-        - default
+        - frontend
 
     server:
       image: server:init
@@ -21,7 +24,17 @@ services:
         - "3001:3001"
       environment:
         - SECRET_TOKEN=TESTTESTTEST
-        - MONGODB_CONNSTRING=mongodb://MongoAdmin:DevelopmentOnlyPass321@mongodb/app
+        - MONGODB_CONNSTRING=mongodb://MongoAdmin:DevelopmentOnlyPass321@mongo:27017/app?retryWrites=true&w=majority&authSource=admin
+      depends_on:
+        - mongodb
+      volumes:
+        - ./server:/server
+      command: sh /server/start.sh
+      links:
+        - "mongodb:mongo"
+      networks:
+        - backend
+        - frontend
 
     mongodb:
       image: mongo:latest
@@ -32,3 +45,12 @@ services:
         - "27017:27017"
       volumes:
         - ./mdb-data:/data/db
+      networks:
+        - backend
+
+volumes:
+  client-node-modules:
+
+networks:
+  frontend:
+  backend:

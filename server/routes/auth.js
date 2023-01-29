@@ -44,7 +44,10 @@ router.post('/', async (req, res, next) => {
         .status(400)
         .json({ status: 'error', message: 'Unable to validate password' });
   } else {
-    return res.status(404).json({ status: 'error', message: 'User not found' });
+    return res.status(400).json({
+      status: 'error',
+      message: 'Credentials invalid. Please check credentials are correct',
+    });
   }
   var token = jwt.sign(
     { username: req.body.username },

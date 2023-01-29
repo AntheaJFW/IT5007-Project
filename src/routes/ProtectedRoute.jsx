@@ -10,19 +10,17 @@ function ProtectedRoute({ children }) {
 
   function hasJWT() {
     var decodedToken;
-    var flag;
 
     if (userAuthContext.currentUser?.token !== undefined) {
       decodedToken = jwt_decode(userAuthContext?.currentUser?.token);
+    } else {
+      return false;
     }
-    if (decodedToken === undefined) return false;
 
     const dateNow = new Date();
     if (decodedToken.exp > dateNow.getTime() / 1000) {
-      flag = true;
+      return true;
     }
-
-    return flag;
   }
 
   if (!hasJWT()) {

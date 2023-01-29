@@ -1,0 +1,5 @@
+/pubilc
+**/*backup
+.gitignore
+*.dockerfile
+/node_modules

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../contexts/AuthContext';
 import './Auth.css';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import client from '../services/client';
 
 export default function Auth(props) {
   const {
@@ -17,22 +19,64 @@ export default function Auth(props) {
     formState: { errors },
   } = useForm();
   const userAuthContext = useContext(AuthContext);
+  const [error, setError] = useState(null);
+
   const location = useLocation();
   const navigate = useNavigate();
-  const onSubmit = (data) => {
-    console.log('form submission', data);
-    userAuthContext.login(data.email, data.password).then((e) => {
-      if (e.status === 'success') {
-        localStorage.setItem('userGlobals', JSON.stringify(e.data));
-        return navigate(location?.state?.from || '/');
-      } else {
-        // Todo: need to implement login error
-        console.log('Error logging in');
+
+  useEffect(() => {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      try {
+        const decodedToken = jwt_decode(token);
+        const dateNow = new Date();
+        if (decodedToken.exp > dateNow.getTime() / 1000) {
+          client.setToken(token);
+          client
+            .get('/api/v1/user')
+            .then((response) => {
+              userAuthContext.setCurrentUserCallback({
+                token,
+                ...response.data.data,
+              });
+              navigate(location?.state?.from || '/dashboard');
+            })
+            .catch((err) => {
+              userAuthContext.logout();
+            });
+        }
+      } catch (e) {
+        console.log('token invalid');
       }
-    });
+    }
+  }, [userAuthContext.token]);
+
+  const onSubmit = (data) => {
+    return userAuthContext
+      .login(data.email, data.password)
+      .then((e) => {
+        if (e.status === 200) {
+          client.setToken(e.data.token);
+          localStorage.setItem('userToken', e.data.token);
+
+          client.get('/api/v1/user').then((response) => {
+            userAuthContext.setCurrentUserCallback({
+              token: e.data.token,
+              ...response.data,
+            });
+          });
+
+          navigate(location?.state?.from?.pathname || '/dashboard', {
+            replace: true,
+          });
+        }
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
   };
 
-  return Object.keys(userAuthContext.currentUser)?.length === 0 ? (
+  return (
     <Col className={'vh-100'} id='auth-background'>
       <Row
         className={[
@@ -76,6 +120,7 @@ export default function Auth(props) {
           {location?.state?.message && (
             <Alert variant='info'>{location?.state?.message}</Alert>
           )}
+          {error && <Alert variant='danger'>{error}</Alert>}
           <Button
             variant='primary'
             type='submit'
@@ -85,7 +130,5 @@ export default function Auth(props) {
         </Form>
       </Row>
     </Col>
-  ) : (
-    <Navigate to={location?.state?.from || '/dashboard'} />
   );
 }

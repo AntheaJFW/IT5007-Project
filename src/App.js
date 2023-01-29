@@ -10,14 +10,7 @@ function App() {
     <BrowserRouter>
       <AuthContextProvider>
         <Routes>
-          <Route
-            path='/'
-            element={
-              <ProtectedRoute>
-                <p>ACCESSED!</p>
-              </ProtectedRoute>
-            }
-          />
+          <Route path='/' element={<p>Accessing public route</p>} />
           <Route
             path='/dashboard'
             element={
