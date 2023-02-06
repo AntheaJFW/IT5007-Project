@@ -1,68 +1,83 @@
 import { Meta } from '@storybook/addon-docs';
-import RepoRelation from './assets/repo-relation.png';
+import usecases from './assets/usecases.png';
 
-<Meta title="IT5007 Project Overview" />
+<Meta title="IT5007 Project Problem Formulation" />
 
-# IT5007 Project overview
+# IT5007 Project Problem Formulation
 
-### Ideas
-- Mods scheduler API - NUS mods
-- Group scheduling
-  - One admin starts an event
-  - other people select availabilities depending on what admin had outlined
-  - API: Google calenders
-- Review websites for NUS Mods
-- Something more dedicated, less like forums
-- More structured
-- Formalise having fields on different properties
-- And incentivise students to leave reviews using a method, eg.
-- Leave review to unlock more
-- Cooking recipe app, pull recipes based on ingredients etc
+Our idea for our project arose from a difficulty we faced as students in
+deciding which modules to take. In the context of NUS, while there are
+resources available such as NUSMods, we found that the information provided
+was often insufficient to make an informed decision. Our solution is to create
+a web application that makes it easy to crowd source information about modules
+that we find are currently lacking such as syllabus, module workload and
+how useful students found the module.
 
+## Is the problem relevant a year/2-years/5-years/10-years from now?
 
-Proceed with database check for authentication
-In the panel to the left are pages for different components used in the project that can be tested individually.
-These are example components provided by Storybook.js that may help with testing out different React components.
+We believe that the problem of insufficient information to make an informed
+decision about one’s modules is a perennial one.
 
-Key information to note:
+In the context of NUS, to find out important information such as syllabus,
+teaching style and module workload, one would need to first register for the
+class and then decide whether to drop it based on the course content of the
+first two weeks.
 
-# Repository images / location
-<img src={RepoRelation} alt="Repository elements"/>
+However, this practice results in wasted time and effort on the part of the
+student if the student ultimately decides to drop the module. Additionally,
+this practice places pressure on faculty who are faced with logistical issues
+if the size of their class changes drastically due to students adding or dropping
+their module within this short time frame.
 
+We believe that having more information available means students can are better
+equipped to make informed decisions earlier, reducing the number of changes in
+student enrolment for a module.
 
+## What is the challenging aspect of the problem? Have others not thought of the problem or is the solution difficult to come up with?
 
+One web application that aims to address this problem is NUSMods ([https://nusmods.com/](https://nusmods.com/)).
+NUSMods provides useful information such as a short course summary and course prerequisites
+and preclusions. However, in its aim to be a “complete knowledge bank of NUS modules by providing
+useful module-related information such as community-driven module reviews and discussions”,
+we find that it falls short. Currently, NUSMods uses an external forum service (Disqus) for students
+to write reviews. While this format facilitates discussion, it results in inconsistencies in terms of
+the review quality. Similarly, the ‘open-ended’ text format of the NUSMods forum often leads to large
+chunks of text which makes it challenging to navigate through the NUSMods forum. In addition, due to
+large variances in review formats, the quality of reviews tends to vary greatly as well. This makes it
+difficult for users to identify elements that may be important to them as part of the decision-making process.
 
-Proceed with database check for authentication
+Another web application that provides a platform for students to submit reviews about their modules is
+Rate My Professor ([https://www.ratemyprofessors.com/](https://www.ratemyprofessors.com/)). However,
+this functions more as a review of a university or a particular faculty staff. As a result, students
+who wish to find out more about a particular module would have to identify the faculty staff teaching
+the module first. Moreover, because reviews are anonymous and because of the ‘open-ended’ text format
+of the review creation, the quality of the reviews differs.
 
-For MDX files:
-```js
-import { Meta } from '@storybook/addon-docs'; // Imports the Meta
-...
+## What is your approach to solving it? What is novel about the solution?
 
-<Meta title="example/Introduction" /> // Sets the 'directory' or tab in the side bar
-```
+Our approach is to create a web application where users can submit their reviews for modules that
+they have taken. The web application will have a standardized format to module reviews where users
+can easily get useful information about the modules (such as workload, difficulty, etc.) without having
+to scroll through large paragraphs of text as is on NUSMods currently. The web application also hopes to
+utilize the standardized review format to generate simple analytics such as student ratings over the semesters
+etc to give users a quick and simple overview of the modules.
 
-For JSX files:
-```js
-import { Header } from '../components/Header'; // Import component
+Likewise, our approach also hopes to implement a social aspect to it as well. Users often read module reviews
+to best gauge the module suitability for the upcoming semesters; the web application will thus attempt
+to link potential classmates by creating a common platform (telegram / discord API etc) for students
+who are taking the same module in the upcoming semester to discuss about the module and form potential
+groups to undertake the module together
 
-export default {
-  title: 'Example/Header', // For setting the 'directory' in the side bar
-  component: Header, // <- Map it to the component
-  parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen', // For defining layout
-  },
-};
+User will have to create accounts and post reviews to view all aspects of the website such as accessing
+all user reviews etc, which will hopefully reduce the number of low-quality post as well as encouraging
+users to post their inputs rather than just consuming them alone.
 
-const Template = (args) => <Header {...args} />; // Instantiating an instance of the component
+## How will you prevent people from copying your solution? (would you patent it?)
 
-export const LoggedIn = Template.bind({}); // Cloning a component instance
-LoggedIn.args = { // Passing the arguments used for ...args to the component for this instance
-  user: {
-    name: 'Jane Doe',
-  },
-};
-```
+Over the long term as our user base grows, our web application will be able to offer more information
+and analytics, which later competitors would lack. Similarly, the database of reviews and module information
+collected over time will lead to a more diverse and insightful understanding of the modules that other
+websites will not be able to easily copy without directly referencing our proposed web application.
 
-This page is intentionally left blank for now until we have more information on project outline.
+## Use cases
+<img src={usecases} alt="Use Cases"/>

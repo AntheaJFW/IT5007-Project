@@ -1,7 +1,8 @@
 # IT5007 Project
 This README is for running the project. \
-For project overview and docs, please refer to: [Project Overview](https://antheajfw.github.io/IT5007-Project/?path=/story/it5007-project-overview--page)
+For project overview and docs, please refer to: [Project Overview](https://antheajfw.github.io/IT5007-Project/?path=/story/it5007-project-problem-formulation--page)
 
+## Development
 ### Requires
 - [yarn](https://yarnpkg.com/getting-started/install)
 
