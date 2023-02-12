@@ -31,3 +31,4 @@ yarn-error.log*
 /server/public
 *backup
 /mdb-data
+.pnp*

@@ -4,3 +4,5 @@
 /pubilc
 .gitignore
 *.dockerfile
+/.pnp
+.pnp.js

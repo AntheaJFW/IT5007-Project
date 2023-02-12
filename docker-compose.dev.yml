@@ -27,8 +27,6 @@ services:
         - MONGODB_CONNSTRING=mongodb://MongoAdmin:DevelopmentOnlyPass321@mongo:27017/app?retryWrites=true&w=majority&authSource=admin
       depends_on:
         - mongodb
-      volumes:
-        - ./server:/server
       command: sh /server/start.sh
       links:
         - "mongodb:mongo"

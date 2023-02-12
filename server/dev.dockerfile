@@ -8,10 +8,10 @@ COPY package.json .
 RUN corepack enable  \
     && corepack prepare yarn@stable --activate
 
-COPY yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
+COPY yarn.lock ./
 RUN yarn set version 3.3.1
 RUN yarn install
+RUN yarn rebuild bcrypt
 
 COPY . .
 RUN chmod +x /server/start.sh
