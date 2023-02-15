@@ -76,6 +76,7 @@ export default function Auth(props) {
       });
   };
 
+
   return (
     <Col className={'vh-100'} id='auth-background'>
       <Row
@@ -117,6 +118,8 @@ export default function Auth(props) {
               <span className='text-danger'>This field is required</span>
             )}
           </Form.Group>
+          
+
           {location?.state?.message && (
             <Alert variant='info'>{location?.state?.message}</Alert>
           )}
@@ -128,6 +131,12 @@ export default function Auth(props) {
             className={['w-100']}
           />
         </Form>
+        <a
+            style={{ margin : ' 20px 0 10px 0',
+                     textAlign: 'right'
+                     }}
+             href='/signup'> Dont have an account? Sign up here 
+        </a>
       </Row>
     </Col>
   );
