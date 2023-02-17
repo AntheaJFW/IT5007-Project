@@ -1,11 +1,8 @@
 **/node_modules
-/server
 .git
-/pubilc
 .gitignore
 *.dockerfile
 /.pnp
 .pnp.js
 .yarn
 node_modules
-server
