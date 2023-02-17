@@ -28,6 +28,8 @@ services:
       depends_on:
         - mongodb
       command: sh /server/start.sh
+      volumes:
+        - ./server:/server
       links:
         - "mongodb:mongo"
       networks:

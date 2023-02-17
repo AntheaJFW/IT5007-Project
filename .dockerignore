@@ -6,3 +6,6 @@
 *.dockerfile
 /.pnp
 .pnp.js
+.yarn
+node_modules
+server

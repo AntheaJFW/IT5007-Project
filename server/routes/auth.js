@@ -2,7 +2,7 @@ const path = require('path');
 var express = require('express');
 const jwt = require('jsonwebtoken');
 var User = require('../models/user');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 const saltRounds = 10;
 
