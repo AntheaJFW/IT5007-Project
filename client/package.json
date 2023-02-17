@@ -1,5 +1,5 @@
 {
-  "name": "5007projecttest",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,11 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH='./server/public' react-scripts build",
+    "build": "BUILD_PATH='../server/public' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public -s ./.storybook/public -o docs",
+    "build-storybook": "build-storybook -s public -s ./.storybook/public -o ../docs",
     "storybook-docs": "start-storybook --docs --no-manager-cache",
     "build-storybook-docs": "build-storybook --docs"
   },
@@ -69,6 +69,7 @@
     "babel-plugin-named-exports-order": "^0.0.2",
     "prettier": "2.8.3",
     "prop-types": "^15.8.1",
+    "react-is": "^18.2.0",
     "storybook-docs-toc": "^1.7.0",
     "styled-components": "^5.3.6",
     "webpack": "^5.75.0"

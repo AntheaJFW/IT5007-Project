@@ -3,14 +3,14 @@ services:
     client:
       image: client:init
       build:
-        context: .
+        context: client
         dockerfile: dev.dockerfile
       ports:
         - "3000:3000"
       depends_on:
         - server
       volumes:
-        - .:/client/
+        - ./client:/client/
         - client-node-modules:/client/node_modules
       networks:
         - frontend
