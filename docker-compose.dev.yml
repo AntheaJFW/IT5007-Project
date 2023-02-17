@@ -9,6 +9,7 @@ services:
         - "3000:3000"
       depends_on:
         - server
+      command: sh /client/start.sh
       volumes:
         - ./client:/client
       networks:
